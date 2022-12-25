@@ -16,10 +16,10 @@
 
 	<!-- Local HSQL DataSource that works in any environment -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
-		<property name="url"><value>jdbc:mysql://localhost:3306/petclinic</value></property>
-		<property name="username"><value>root</value></property>
-		<property name="password"><value>root</value></property>
+		<property name="driverClassName"><value>${jdbc.driverClassName}</value></property>
+		<property name="url"><value>${jdbc.url}</value></property>
+		<property name="username"><value>${jdbc.username}</value></property>
+		<property name="password"><value>${jdbc.password}</value></property>
 	</bean>
 
 	<!-- Transaction manager for a single JDBC DataSource (alternative to JTA) -->
@@ -45,5 +45,14 @@
 	</bean>
 
 	<!-- ========================= End of PERSISTENCE DEFINITIONS ========================= -->
-	
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!-- ClassPathResource使用Thread.currentThread().getContextClassLoader()读取，所以是项目路径 -->
+				<value>/org/springframework/samples/petclinic/jdbc/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
 </beans>
