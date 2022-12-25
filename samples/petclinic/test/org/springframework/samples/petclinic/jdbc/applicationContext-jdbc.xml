@@ -16,10 +16,10 @@
 
 	<!-- Local HSQL DataSource that works in any environment -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"><value>org.hsqldb.jdbcDriver</value></property>
-		<property name="url"><value>jdbc:hsqldb:hsql://localhost:9001</value></property>
-		<property name="username"><value>sa</value></property>
-		<property name="password"><value></value></property>
+		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+		<property name="url"><value>jdbc:mysql://localhost:3306/petclinic</value></property>
+		<property name="username"><value>root</value></property>
+		<property name="password"><value>root</value></property>
 	</bean>
 
 	<!-- Transaction manager for a single JDBC DataSource (alternative to JTA) -->
@@ -40,7 +40,7 @@
 
 	<!-- Petclinic primary business object: HSQL JDBC implementation -->
 	<!-- Uncomment this to switch to JDBC, commenting out the Hibernate implementation below. -->
-	<bean id="clinicTarget" class="org.springframework.samples.petclinic.jdbc.HsqlJdbcClinic">
+	<bean id="clinicTarget" class="org.springframework.samples.petclinic.jdbc.MySQLJdbcClinic">
 		<property name="dataSource"><ref local="dataSource"/></property>
 	</bean>
 
